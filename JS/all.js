@@ -109,7 +109,7 @@ function updateRecords(data){
   }
 
   for (let i=0; i<len; i++){
-    str += '<li data-number="'+i+'" style="border-left: 7px solid '+data[i].borderColor+';"><h3>'+data[i].assess+'</h3><div class="data"><p>BMI<span>'+data[i].bmi+'</span></p><p>weight<span>'+data[i].weight+'Kg</span></p><p>height<span>'+data[i].height+'cm</span></p><p>'+data[i].currentDate+'</p></div><a href="#" data-number="'+i+'" style="padding:5px;"><img src="https://i.ibb.co/NCrvGsM/toppng-com-it-is-worthless-discarded-material-or-objects-trash-bin-icon-1335x1577.png" alt="recyleBinIcon" style="width:16px;height:18px;pointer-events:none;"></a></li>';
+    str += '<li data-number="'+i+'" style="border-left: 7px solid '+data[i].borderColor+';"><h3>'+data[i].assess+'</h3><div class="data"><p>BMI<span>'+data[i].bmi+'</span></p><p>weight<span>'+data[i].weight+'Kg</span></p><p>height<span>'+data[i].height+'cm</span></p><p>'+data[i].currentDate+'</p></div><a href="#" data-number="'+i+'" style="padding:5px;"><img src="https://i.imgur.com/LR5GNCd.png" alt="recyleBinIcon" style="width:16px;height:18px;pointer-events:none;"></a></li>';
   }
   records.innerHTML = str;
 }
