@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="icon" href="https://hexschool.github.io/JavaScript_HomeWork/assets/BMICLogo.png">
+    <link rel="short icon" href="https://hexschool.github.io/JavaScript_HomeWork/assets/BMICLogo.png">
+    <meta name="description" content="BMI 計算機 - 線上BMI計算機，幫助你紀錄每天體態的變化，維持健康的體態！">
+    <meta name="keywords" content="BMI計算機, BMI Calculator, BMI, online Calculator, BMI Records">
+
+    <meta property="og:title" content="BMI Calculator">
+    <meta property="og:description" content="BMI 計算機 - 線上BMI計算機，幫助你紀錄每天體態的變化，維持健康的體態！">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://diff30140556.github.io/BMI.Calculator/">
+    <meta property="og:image" content="https://hexschool.github.io/JavaScript_HomeWork/assets/BMICLogo.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <link rel="stylesheet" href="CSS/all.css">
+    
+</head>
+<body>
+  <div class="wrap">
+    <div id="top"></div>
+    <div class="header">
+      <h1 class="bmiLogo">
+          BMI Calculator
+      </h1>
+
+      <div class="heightWeight">
+        <form action="index.html">
+          <label for="height">身高 cm</label>
+          <input type="number" class="height" name="height" id="height" placeholder="請輸入身高">
+          <span class="heightAlert"></span>
+          
+          <label for="weight">體重 kg</label>
+          <input type="number" class="weight" name="weight" id="weight" placeholder="請輸入體重">
+          <span class="weightAlert"></span>
+        </form>
+      </div>
+
+      <input class="calculate" type="button" value="看結果">
+
+      <div class="reCalculate">
+      </div>
+      <h3 class="assessResult"></h3>
+
+      
+    </div>
+    <div class="content">
+      <h2>BMI 紀錄</h2>
+      <ul class="records">
+      </ul>
+      <div class="pageBox">
+        <ul class="page"> 
+        </ul>
+      </div>
+      <button class="deleteAll">刪除所有紀錄</button>
+    </div>
+    
+    <div class="footer">
+      <a href="#top"><img src="https://hexschool.github.io/JavaScript_HomeWork/assets/BMICLogo.png" alt="logoIcon"></a>
+    </div>
+    
+  </div>
+</body>
+<script src="JS/all.js"></script>
+</html>
