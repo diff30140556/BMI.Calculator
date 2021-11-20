@@ -1,14 +1,14 @@
 // 宣告變數
-var height = document.querySelector('.height');
-var weight = document.querySelector('.weight');
-var calculate = document.querySelector('.calculate');
-var records = document.querySelector('.records');
-var deleteAll = document.querySelector('.deleteAll');
-var assessResult = document.querySelector('.assessResult');
-var contentLen = 5;
-var data = JSON.parse(localStorage.getItem('bodyIndex'))||[];
-var totalPages = Math.ceil(data.length/contentLen);
-var page = document.querySelector('.page');
+let height = document.querySelector('.height');
+let weight = document.querySelector('.weight');
+let calculate = document.querySelector('.calculate');
+let records = document.querySelector('.records');
+let deleteAll = document.querySelector('.deleteAll');
+let assessResult = document.querySelector('.assessResult');
+const contentLen = 5;
+let data = JSON.parse(localStorage.getItem('bodyIndex'))||[];
+let totalPages = Math.ceil(data.length/contentLen);
+let page = document.querySelector('.page');
 
 // 添加監聽器
 calculate.addEventListener('click',calculateBMI);
@@ -29,22 +29,22 @@ function calculateBMI(){
   weightAlert.textContent = '';
   switch(true){
       case height.value<0:
-        heightAlert.textContent='身高不可為負數'
+        heightAlert.textContent='身高不可為負數';
         return;
 
       case weight.value<0:
-        weightAlert.textContent='體重不可為負數'
+        weightAlert.textContent='體重不可為負數';
         return;
 
-      case height.value=='' && weight.value !== '':
+      case height.value==='' && weight.value !== '':
         heightAlert.textContent='請輸入身高(cm)';
         return;
 
-      case weight.value=='' && height.value !== '':
+      case weight.value==='' && height.value !== '':
         weightAlert.textContent='請輸入體重(kg)';
         return;
         
-      case height.value=='' && weight.value=='':
+      case height.value==='' && weight.value=='':
         heightAlert.textContent='請輸入身高(cm)';
         weightAlert.textContent='請輸入體重(kg)';
         return;
@@ -53,7 +53,7 @@ function calculateBMI(){
   let cm = parseFloat(height.value).toFixed(1);
   let m = parseFloat((cm/100).toFixed(2));
   let kg = parseFloat(weight.value);
-  let BMI = (kg/(m*m)).toFixed(1);
+  let BMI = parseFloat((kg/(m*m)).toFixed(1));
   let assessment = '';
   let color = '';
   let time = new Date();
@@ -61,7 +61,6 @@ function calculateBMI(){
   let month = time.getMonth()+1;
   let date = time.getDate();
   let today = month+'-'+date+'-'+year;
-
 //   判斷BMI以及對應顏色
   switch(true){
     case BMI<18.5:
@@ -125,9 +124,9 @@ function updateRecords(data,num1){
   }
 
 // 當有兩筆資料以上時，才會顯示出刪除全部紀錄的選項
-  var str = '';
-  var len = data.length;
-  var content = document.querySelector('.content');
+  let str = '';
+  let len = data.length;
+  let content = document.querySelector('.content');
   if (len>1){
       deleteAll.style.display= 'block';
       content.style.paddingBottom="unset";
@@ -146,7 +145,18 @@ if (num3>data.length){
 
 // 資料渲染
   for (let i=num2; i<num3; i++){
-    str += '<li data-number="'+i+'" style="border-left: 7px solid '+data[i].borderColor+';"><h3>'+data[i].assess+'</h3><div class="data"><p>BMI<span>'+data[i].bmi+'</span></p><p>weight<span>'+data[i].weight+'Kg</span></p><p>height<span>'+data[i].height+'cm</span></p><p>'+data[i].currentDate+'</p></div><a href="#" data-number="'+i+'" style="padding:5px;"><img src="https://i.imgur.com/LR5GNCd.png" alt="recyleBinIcon" style="width:16px;height:18px;pointer-events:none;"></a></li>';
+    str += 
+    `<li data-number="${i}" style="border-left: 7px solid ${data[i].borderColor};">
+      <h3>${data[i].assess}</h3>
+      <div class="data">
+        <p>BMI<span>${data[i].bmi}</span></p>
+        <p>weight<span>${data[i].weight}Kg</span></p>
+        <p>height<span>${data[i].height}cm</span></p>
+        <p>${data[i].currentDate}</p>
+      </div>
+      <a href="#" data-number="${i}" style="padding:5px;">
+        <img src="https://i.imgur.com/LR5GNCd.png" alt="recyleBinIcon" style="width:16px;height:18px;pointer-events:none;"></a>
+    </li>`;
   }
   records.innerHTML = str;
   pagination();
@@ -154,10 +164,14 @@ if (num3>data.length){
 }
 // 點擊計算後新增新的按鈕
 function changeButton(BMIobject){
-    reCalculate.innerHTML = '<button class="reCalculateBt" style="border: 6px solid '+BMIobject.borderColor+'"><p class="bmiResult" style="color:'+BMIobject.borderColor+'">'+BMIobject.bmi+'<span style="color:'+BMIobject.borderColor+'">BMI</span><div class="smallCircle" style="background-color:'+BMIobject.borderColor+';"></div></button>'
+    reCalculate.innerHTML = 
+    `<button class="reCalculateBt" style="border: 6px solid ${BMIobject.borderColor}">
+      <p class="bmiResult" style="color:${BMIobject.borderColor}">${BMIobject.bmi}<span style="color:${BMIobject.borderColor}">BMI</span>
+      <div class="smallCircle" style="background-color:${BMIobject.borderColor};"></div>
+    </button>`;
 }
 // 點擊重新計算刪除當前按鈕，並重新顯示原本的按鈕
-var reCalculate = document.querySelector('.reCalculate');
+let reCalculate = document.querySelector('.reCalculate');
 reCalculate.addEventListener('click',deleteButton);
 
 function deleteButton(){
@@ -202,13 +216,14 @@ function pagination(){
   page.innerHTML = '';
 
   for (let i=0; i<totalPages; i++){
-    str += '<li><a href="#" class="pagination" data-number="'+(i+1)+'">'+(i+1)+'</a></li>';
+    // 使用樣板字面值寫法，但是在li後面換行會造成程式碼錯誤? 讓JS 243行的backgroundColor無法執行?
+    str += `<li><a href="#" class="pagination" data-number="${(i+1)}">${(i+1)}</a></li>`;
   }
   page.innerHTML = str;
 }
 
 // 切換頁數
-var currentPage = '';
+let currentPage = '';
 function switchPage(e){
   e.preventDefault();
   if (e.target.nodeName !== 'A'){
