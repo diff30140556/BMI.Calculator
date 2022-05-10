@@ -29,24 +29,24 @@ function calculateBMI(){
   weightAlert.textContent = '';
   switch(true){
       case height.value<0:
-        heightAlert.textContent='身高不可為負數';
+        heightAlert.textContent='The height can not be negative number';
         return;
 
       case weight.value<0:
-        weightAlert.textContent='體重不可為負數';
+        weightAlert.textContent='The weight can not be negative number';
         return;
 
       case height.value==='' && weight.value !== '':
-        heightAlert.textContent='請輸入身高(cm)';
+        heightAlert.textContent='Please enter your height(cm)';
         return;
 
       case weight.value==='' && height.value !== '':
-        weightAlert.textContent='請輸入體重(kg)';
+        weightAlert.textContent='Please enter your weight(kg)';
         return;
         
       case height.value==='' && weight.value=='':
-        heightAlert.textContent='請輸入身高(cm)';
-        weightAlert.textContent='請輸入體重(kg)';
+        heightAlert.textContent='Please enter your height(cm)';
+        weightAlert.textContent='Please enter your weight(kg)';
         return;
   }
 
@@ -64,27 +64,27 @@ function calculateBMI(){
 //   判斷BMI以及對應顏色
   switch(true){
     case BMI<18.5:
-      assessment = '過輕';
+      assessment = 'Underweight';
       color = '#31BAF9';
       break;
     case BMI>=18.5 && BMI<24:
-      assessment = '理想';
+      assessment = 'Normal';
       color = '#86D73F';
       break;
     case BMI>=24 && BMI<27:
-      assessment = '過重';
+      assessment = 'Overweight';
       color = '#FF982D';
       break;
     case BMI>=27 && BMI<30:
-      assessment = '輕度肥胖';
+      assessment = 'Obese';
       color = '#FF6C03';
       break;
     case BMI>=30 && BMI<35:
-      assessment = '中度肥胖';
+      assessment = 'Medium Obese';
       color = '#ff5f03';
       break;
     case BMI>=35:
-      assessment = '重度肥胖';
+      assessment = 'Extremely Obese';
       color = '#FF1200';
       break;
   }
